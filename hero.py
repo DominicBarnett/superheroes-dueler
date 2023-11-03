@@ -25,6 +25,14 @@ class Hero:
     def is_alive(self):
         return self.current_health > 0
 
+    def add_ability(self):
+        pass
+
+    def attack():
+        pass
+
+    def defend(): 
+        pass 
 
     def fight(self, opponent):
             ''' Current Hero will take turns fighting the opponent hero passed in.
@@ -50,7 +58,27 @@ class Hero:
             #1) randomly choose winner,
             # Hint: Look into random library, more specifically the choice method
 
+class Ability:
+    def __init__(self, name, max_damage):
+        '''
+        Initialize the values passed into this
+        method as instance variables.
+        '''
 
+        # Assign the "name" and "max_damage"
+        # for a specific instance of the Ability class
+        self.name = name
+        self.max_damage = max_damage
+    
+    def attack(self):
+        '''Return a value between 0 and the value set by self.max_damage'''
+        random_value = random.randint(0,self.max_damage)
+        return random_value
+
+
+
+
+        
 
 
 
@@ -61,11 +89,13 @@ class Hero:
 
 
 if __name__ == "__main__":
-  # If you run this file from the terminal
-  # this block is executed.
-  my_hero = Hero("Grace Hopper", 200)
-  villan = Hero("Jane")
-  print(my_hero.name)
-  print(my_hero.current_health)
-
-  winner = my_hero.fight(villan)
+    # If you run this file from the terminal
+    # this block is executed.
+    my_hero = Hero("Grace Hopper", 200)
+    villan = Hero("Jane")
+    print(my_hero.name)
+    print(my_hero.current_health)
+    ability = Ability("Debugging Ability", 20)
+    print(ability.name)
+    print(ability.attack())
+#   winner = my_hero.fight(villan)
