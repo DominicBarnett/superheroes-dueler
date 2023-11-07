@@ -21,8 +21,8 @@ class Hero:
         # when a hero is created, their current health is
         # always the same as their starting health (no damage taken yet!)
         self.current_health = starting_health
-        self.abilities = list()
-        self.armors = list()
+        self.abilities = []
+        self.armors = []
 
     def add_ability(self, ability):
         '''add ability to abilities list'''
@@ -102,18 +102,6 @@ class Hero:
             # Phases to implement:
             #1) randomly choose winner,
             # Hint: Look into random library, more specifically the choice method
-
-
-
-
-
-        
-
-
-
-
-
-
 
 
 
