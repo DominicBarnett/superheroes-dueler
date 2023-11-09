@@ -34,11 +34,12 @@ class Team:
             kd = hero.kills / hero.deaths
             print(f'{hero.name} Kill/Deaths:{kd}')
             
-    def revive_heroes(self, health=100):
+    def revive_heroes(self):
         '''reset all heroes health to starting_health'''
         for hero in self.heroes:
-            self.starting_health = health
-            print(f'{hero} has been revived with {health} health')
+            
+            hero.current_health = hero.starting_health
+        print(f'{hero.name} has been revived with {hero.starting_health} health')
 
     def attack(self, other_team):
         '''Battle each team against each other'''
@@ -56,7 +57,6 @@ class Team:
             fighting_hero = random.choice(living_heroes)
             fighting_opponent = random.choice(living_opponents)
 
-            # winner = Hero.fight(fighting_hero, fighting_opponent)
             winner = fighting_hero.fight(fighting_opponent)
 
             if winner == fighting_hero:
