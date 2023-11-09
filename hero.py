@@ -23,6 +23,16 @@ class Hero:
         self.current_health = starting_health
         self.abilities = []
         self.armors = []
+        self.deaths = 0
+        self.kills = 0
+    
+    def add_kill(self, num_kills):
+        '''update self.kills by num_kills amount'''
+        self.kills += num_kills
+
+    def add_death(self, num_deaths):
+        '''update deaths with num_deaths'''
+        self.deaths += num_deaths
 
     def add_ability(self, ability):
         '''add ability to abilities list'''
@@ -74,6 +84,7 @@ class Hero:
             for armor in self.armors:
                 total_armor += armor.block()
             return total_armor
+        return total_armor
     
 
     def fight(self, opponent):
@@ -83,29 +94,29 @@ class Hero:
                 print("Draw")
             else:
                 while self.is_alive() and opponent.is_alive():
-                    winner = random.choice([self, opponent])
-                    loser = self if winner == opponent else opponent
 
-                    damage = random.randint(1,50)
+                    self_damage = self.attack()
+                    opponent_damage = opponent.attack()
 
-                    loser.take_damage(damage)
+                    self.take_damage(opponent_damage)
+                    opponent.take_damage(self_damage)
 
-                    print(f"{winner.name} attacks {loser.name} for {damage} damage!")
-
-                if self.is_alive():
+            if self.is_alive():
                     print(f"{self.name} wins the battle!")
+                    self.add_kill(1)
+                    opponent.add_death(1)
                     return self
-                else:
+            else:
                     print(f"{opponent.name} wins the battle!")
+                    self.add_death(1)
+                    opponent.add_kill(1)
                     return opponent
-            # TODO: Fight each hero until a victor emerges.
-            # Phases to implement:
-            #1) randomly choose winner,
-            # Hint: Look into random library, more specifically the choice method
+                
+
+            
 
 
-
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # If you run this file from the terminal
     # this block is executed.
 #     my_hero = Hero("Grace Hopper", 200)
@@ -159,8 +170,8 @@ if __name__ == "__main__":
     # hero2.add_ability(ability3)
     # hero2.add_ability(ability4)
     # hero1.fight(hero2)
-    hero = Hero("Wonder Woman")
-    weapon = Weapon("Lasso of Truth", 90)
-    hero.add_weapon(weapon)
-    print(hero.attack())
+    # hero = Hero("Wonder Woman")
+    # weapon = Weapon("Lasso of Truth", 90)
+    # hero.add_weapon(weapon)
+    # print(hero.attack())
    
